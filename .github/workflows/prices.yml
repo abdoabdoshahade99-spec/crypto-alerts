@@ -1,0 +1,39 @@
+name: crypto-prices
+
+on:
+  schedule:
+    # كل ساعة من 6 صباحاً حتى 12 منتصف الليل بتوقيت تركيا
+    - cron: '0 3 * * *'   # 6:00 ص
+    - cron: '0 4 * * *'   # 7:00 ص
+    - cron: '0 5 * * *'   # 8:00 ص
+    - cron: '0 6 * * *'   # 9:00 ص
+    - cron: '0 7 * * *'   # 10:00 ص
+    - cron: '0 8 * * *'   # 11:00 ص
+    - cron: '0 9 * * *'   # 12:00 م
+    - cron: '0 10 * * *'  # 1:00 م
+    - cron: '0 11 * * *'  # 2:00 م
+    - cron: '0 12 * * *'  # 3:00 م
+    - cron: '0 13 * * *'  # 4:00 م
+    - cron: '0 14 * * *'  # 5:00 م
+    - cron: '0 15 * * *'  # 6:00 م
+    - cron: '0 16 * * *'  # 7:00 م
+    - cron: '0 17 * * *'  # 8:00 م
+    - cron: '0 18 * * *'  # 9:00 م
+    - cron: '0 19 * * *'  # 10:00 م
+    - cron: '0 20 * * *'  # 11:00 م
+    - cron: '0 21 * * *'  # 12:00 ليل
+  workflow_dispatch:
+
+jobs:
+  post-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python price_bot.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
