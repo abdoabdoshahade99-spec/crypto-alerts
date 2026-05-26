@@ -1,0 +1,117 @@
+name: crypto-alerts
+
+on:
+  schedule:
+    - cron: '50 23 * * 0-4'
+    - cron: '50 8 * * 1-5'
+    - cron: '50 5 * * 1-5'
+    - cron: '50 13 * * 1-5'
+    - cron: '50 14 * * 1-5'
+    - cron: '50 19 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  test-manual:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python bot.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          MESSAGE: "test - البوت يعمل بنجاح"
+
+  open-japan:
+    if: github.event.schedule == '50 23 * * 0-4'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python bot.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          MESSAGE: "🚨 تنبيه كريبتو | الاسواق الاسيوية - 10 دقائق على افتتاح بورصة طوكيو - راقب BTC و ETH مع افتتاح الاسواق الاسيوية - للانضمام مجانا توصيات كريبتو weex https://www.weex.com/register?vipCode=ub60 - للتسجيل في منصة bitget https://partner.bitget.fit/bg/7hlx3w3x - للدعم والاستفسار https://t.me/abdoshahade1"
+
+  open-london:
+    if: github.event.schedule == '50 8 * * 1-5'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python bot.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          MESSAGE: "🚨 تنبيه كريبتو | الاسواق الاوروبية - 10 دقائق على افتتاح بورصة لندن - توقع تحركات قوية على BTC و ETH - للانضمام مجانا توصيات كريبتو weex https://www.weex.com/register?vipCode=ub60 - للتسجيل في منصة bitget https://partner.bitget.fit/bg/7hlx3w3x - للدعم والاستفسار https://t.me/abdoshahade1"
+
+  close-japan:
+    if: github.event.schedule == '50 5 * * 1-5'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python bot.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          MESSAGE: "🚨 تنبيه كريبتو | اغلاق الاسواق الاسيوية - 10 دقائق على اغلاق بورصة طوكيو - راجع صفقاتك على BTC و ETH - للانضمام مجانا توصيات كريبتو weex https://www.weex.com/register?vipCode=ub60 - للتسجيل في منصة bitget https://partner.bitget.fit/bg/7hlx3w3x - للدعم والاستفسار https://t.me/abdoshahade1"
+
+  open-usa:
+    if: github.event.schedule == '50 13 * * 1-5'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python bot.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          MESSAGE: "🚨 تنبيه كريبتو | الاسواق الامريكية - 10 دقائق على افتتاح وول ستريت - الاسواق الامريكية تؤثر مباشرة على BTC و ETH - للانضمام مجانا توصيات كريبتو weex https://www.weex.com/register?vipCode=ub60 - للتسجيل في منصة bitget https://partner.bitget.fit/bg/7hlx3w3x - للدعم والاستفسار https://t.me/abdoshahade1"
+
+  close-london:
+    if: github.event.schedule == '50 14 * * 1-5'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python bot.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          MESSAGE: "🚨 تنبيه كريبتو | اغلاق الاسواق الاوروبية - 10 دقائق على اغلاق بورصة لندن - راجع صفقاتك قبل اغلاق السوق الاوروبي - للانضمام مجانا توصيات كريبتو weex https://www.weex.com/register?vipCode=ub60 - للتسجيل في منصة bitget https://partner.bitget.fit/bg/7hlx3w3x - للدعم والاستفسار https://t.me/abdoshahade1"
+
+  close-usa:
+    if: github.event.schedule == '50 19 * * 1-5'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python bot.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          MESSAGE: "🚨 تنبيه كريبتو | اغلاق الاسواق الامريكية - 10 دقائق على اغلاق وول ستريت - توقع تذبذب على BTC بعد الاغلاق - للانضمام مجانا توصيات كريبتو weex https://www.weex.com/register?vipCode=ub60 - للتسجيل في منصة bitget https://partner.bitget.fit/bg/7hlx3w3x - للدعم والاستفسار https://t.me/abdoshahade1"
